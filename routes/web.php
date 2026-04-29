@@ -17,8 +17,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/', fn()=>redirect()->route('tasks.index'));
-    Route::resource('tasks', TaskController::class);
+    Route::get('/', fn()=>redirect()->route('tasks.index'))->name('dashboard');
+    //Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
+    Route::resource('tasks', TaskController::class);//->except(['index'])  ;
     Route::patch('tasks/{task}/status',[TaskController::class,'updateStatus'])
        ->name('tasks.status');
 });
