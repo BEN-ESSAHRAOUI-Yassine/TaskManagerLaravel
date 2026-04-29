@@ -6,40 +6,44 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Category;
 use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 
 class TaskController extends Controller
 {
-   public function index(Request $request)
-   {
-       $query = Task::with(['category','user']);
+    use AuthorizesRequests;
+
+    public function index(Request $request)
+    {
+        $query = Task::with(['category','user']);
+        
+        $query->where('user_id', auth()->id());
+
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
 
 
-       if ($request->status) {
-           $query->where('status', $request->status);
-       }
+        if ($request->category_id) {
+            $query->where('category_id', $request->category_id);
+        }
 
-
-       if ($request->category_id) {
-           $query->where('category_id', $request->category_id);
-       }
-
-
-       $tasks = $query->latest()->paginate(8);
-       $categories = Category::all();
+        $tasks = $query->latest()->paginate(8)->withQueryString();
+        $categories = Category::all();
 
 
        // Dashboard stats
-       $counts = Task::selectRaw("
-           count(*) as total,
-           sum(status='todo') as todo,
-           sum(status='in_progress') as in_progress,
-           sum(status='done') as done
-       ")->first();
+        $counts = Task::where('user_id', auth()->id())
+        ->selectRaw("
+            count(*) as total,
+            sum(status='todo') as todo,
+            sum(status='in_progress') as in_progress,
+            sum(status='done') as done
+        ")->first();
 
 
-       return view('tasks.index', compact('tasks','categories','counts'));
-   }
+        return view('tasks.index', compact('tasks','categories','counts'));
+    }
 
 
    public function create()
@@ -70,12 +74,21 @@ class TaskController extends Controller
 
 
    public function edit(Task $task)
-   {
-       $this->authorize('update',$task);
+   {   
+        if ($task->user_id !== auth()->id()) {
+            abort(403);
+        }
+        //$this->authorize('update',$task);
 
 
        $categories = Category::all();
        return view('tasks.edit', compact('task','categories'));
+   }
+
+   public function show(Task $task)
+   {    $users = User::all();
+        $categories = Category::all();
+        return view('tasks.show', compact('task','categories','users'));
    }
 
 
@@ -88,7 +101,8 @@ class TaskController extends Controller
            'title'=>'required',
            'description'=>'nullable',
            'status'=>'required',
-           'category_id'=>'required'
+           'category_id'=>'required',
+           'due_date'=>'nullable|date' 
        ]));
 
 

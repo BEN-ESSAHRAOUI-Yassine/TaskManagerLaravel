@@ -1,3 +1,290 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+   font-family: Arial;
+   background: #f5f6fa;
+}
+
+
+.container {
+   width: 80%;
+   margin: auto;
+}
+
+.site-footer{
+    margin-top:80px;
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:40px 0;
+}
+
+.header {
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid #e5e7eb;
+}
+
+.nav-wrapper{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+}
+
+.dashboard {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.page-title {
+    margin-bottom: 20px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 10px;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.card span {
+    color: #777;
+    font-size: 14px;
+}
+
+.card h2 {
+    margin-top: 5px;
+}
+
+.card.todo { border-left: 5px solid #f39c12; }
+.card.progress { border-left: 5px solid #3498db; }
+.card.done { border-left: 5px solid #2ecc71; }
+
+/* FILTERS */
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.filters select,
+.filters .btn {
+    padding: 8px 12px;
+}
+
+/* TASKS */
+.tasks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Responsive (important) */
+@media (max-width: 900px) {
+    .tasks {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .tasks {
+        grid-template-columns: 1fr;
+    }
+}
+
+.task {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: 0.2s;
+}
+
+.own-task {
+    border-color: orange;
+    background: #fff7ed;
+}
+
+.task:hover {
+    transform: scale(1.01);
+}
+
+.task-title-link {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.2s;
+}
+
+.task-title-link:hover {
+    color: orange;
+}
+
+
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category {
+    color: #777;
+    font-size: 14px;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #fff;
+}
+
+
+
+.badge.todo { background: #f39c12; }
+.badge.in_progress { background: #3498db; }
+.badge.done { background: #2ecc71; }
+
+.due {
+    font-size: 14px;
+}
+
+.overdue {
+    color: red;
+    font-weight: bold;
+}
+
+.due.overdue {
+    color: red;
+    font-weight: bold;
+}
+
+/* ACTIONS */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.delete-form {
+    margin-top: 15px;
+    text-align: right;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #ddd;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn.primary {
+    background: #3498db;
+    color: white;
+}
+
+.btn.danger {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* PAGINATION */
+.pagination {
+    margin-top: 20px;
+}
+
+.task-page {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.task-card {
+    width: 100%;
+    max-width: 700px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.title-input {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.input {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+    transition: 0.2s;
+}
+
+.input:focus {
+    border-color: orange;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255,165,0,0.2);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+label {
+    font-size: 13px;
+    color: #666;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #eee;
+}
+
+.task-card h1 {
+    margin-bottom: 15px;
+}
+
