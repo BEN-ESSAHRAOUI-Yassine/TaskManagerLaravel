@@ -76,9 +76,9 @@ class TaskController extends Controller
    public function edit(Task $task)
    {   
         if ($task->user_id !== auth()->id()) {
-            abort(403);
+             abort(403);
         }
-        //$this->authorize('update',$task);
+        
 
 
        $categories = Category::all();
@@ -86,7 +86,8 @@ class TaskController extends Controller
    }
 
    public function show(Task $task)
-   {    $users = User::all();
+   {    $this->authorize('view',$task);
+        $users = User::all();
         $categories = Category::all();
         return view('tasks.show', compact('task','categories','users'));
    }
