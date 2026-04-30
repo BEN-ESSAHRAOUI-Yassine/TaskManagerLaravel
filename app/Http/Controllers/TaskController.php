@@ -117,7 +117,7 @@ class TaskController extends Controller
 
 
        $task->delete();
-       return back();
+       return redirect()->route('tasks.index');
    }
 
 
