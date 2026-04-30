@@ -288,3 +288,96 @@ hr {
     margin-bottom: 15px;
 }
 
+
+/* PAGE CENTER */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f7fb;
+}
+
+/* CARD (same style as task/card) */
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* TITLE */
+.auth-title {
+    margin-bottom: 5px;
+}
+
+.auth-subtitle {
+    color: #777;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+/* ERROR */
+.error {
+    color: #e74c3c;
+    font-size: 13px;
+}
+
+/* REMEMBER */
+.remember {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+/* ACTIONS */
+.auth-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* LINK */
+.link {
+    font-size: 13px;
+    color: #777;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #000;
+}
+
+/* BUTTON */
+.btn.primary {
+    background: #3498db;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn.primary:hover {
+    background: #2980b9;
+}
