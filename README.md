@@ -241,6 +241,25 @@ routes/
 * Visitors only see published articles
 * Draft articles stay private
 * Unauthenticated users are redirected to login
+---
+###  Debugging
+#### Laravel Debugbar
+
+- You can:
+
+    - Count SQL queries
+    - Detect N+1 problems
+    - Analyze performance
+    - Laravel Telescope
+
+#### Access: /telescope
+
+- You can:
+
+    - Inspect HTTP requests
+    - View payload
+    - See SQL queries
+    - Detect exceptions
 
 ---
 
